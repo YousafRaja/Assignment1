@@ -1,11 +1,10 @@
 # Assignment1
 
 ## How to run: 
-
 ./main.py 
 
-Windows users that don't have python3 installed can run it through PowerShell.
+## How to run: 
+Windows users that don't have python3 installed should try running it through PowerShell.
 
-Site used for testing regex:
-
+## Reference: 
 https://regex101.com/
