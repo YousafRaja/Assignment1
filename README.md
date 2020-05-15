@@ -3,7 +3,7 @@
 ## How to run: 
 ./main.py 
 
-## How to run: 
+## Troubleshooting: 
 Windows users that don't have python3 installed should try running it through PowerShell.
 
 ## Reference: 
