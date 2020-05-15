@@ -3,7 +3,7 @@
 Sorts sentences in a text file in lexographical order.
 
 ## How to run: 
-Open bash terminal in project directory and run ./main.py 
+Navigate to project directory, open bash terminal and run ./main.py 
 
 ## Troubleshooting: 
 Windows users that don't have python3 installed should try running it through PowerShell.
