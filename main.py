@@ -33,6 +33,8 @@ def driver(fileName):
 
 def main():
     driver(FILENAME)
+    input("Done, press any key to exit.")
+
 
 if __name__ == "__main__":
     main()
