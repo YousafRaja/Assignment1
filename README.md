@@ -1,6 +1,6 @@
 # Assignment1
 
-##How to run: 
+## How to run: 
 
 ./main.py 
 
