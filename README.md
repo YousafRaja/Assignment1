@@ -1,5 +1,7 @@
 # Assignment1
 
+Sorts sentences in a text file in lexographical order.
+
 ## How to run: 
 Open bash terminal in project directory and run ./main.py 
 
