@@ -2,7 +2,7 @@ import re
 
 FILENAME = "ShortStory.txt"
 
-class sentence(object):
+class sentence:
     def __init__(self, sentence):
         self.sentence = sentence
     def __lt__(self, other):
