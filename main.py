@@ -12,21 +12,24 @@ class sentence:
     def priority(self,s1, s2):
         s1 = re.sub(r'\W+', '', s1)
         s2 = re.sub(r'\W+', '', s2)
-        return sorted([s1, s2])[0] == s1
+        return sorted([s1, s2])[0] == s1 # By default Python3 will sort strings in alphanumeric order.
 
 def getSentences(fileName : str):
+    # Regex was used to compartmentalize string parsing logic from the sorting code.
+    # The grammatical structure of the text turned out to be more irregular than I anticipated.
+    # For a larger project, I would have wrote a tokenizer to handle string parsing.    
     with open(fileName, "r") as file:
         data = file.read()
     regex = r"([\s]*([A-Za-z\-])*[\w\s\,\'\-()\:\;]*([\?]|[\.]|[\!])[\s]*)|([\s]*([A-Za-z\-])([\w\s\,\'\-()\:\;\"]*([\w]*)[\s]*[\.][\w\s]*[\.][\w\s]*[\.][\w\s]*)|([\s]*([A-Za-z\-])([\w\s\,\'\-()\:\;\"]*([\?]|[\.]|[\!])[\s]*)))|([\s]*([A-Za-z\-])[\w\s\,\'\-()\:\;]*([\?]|[\.]|[\!])[\s]*)|([\s]*[\"]*([A-Za-z\-])[\w\s\,\'\-]*[\"][^\n]([\s]*)([A-Za-z\-])[\w\s\,\?\!\'\-]*[\s]*[\"]([A-Za-z\-])[\w\s\,\?\!\'\.\-]*[\"])|([\s]*[^\"]([\d\w\s\,\'\-][\d\w\s\,\'\-]*)([\"]*)(?:[^\"\\]|\\.)*)|([\s]*[A-Za-z\-][\w\s\,\'\"\-]*[\"]*([\?]|[\.]|[\!]|[\:])*[\s]*)|([\s]*[\"]([A-Za-z\-])[\w\s\,\?\!\'\.\-]*([\"][\n]|(([\"][\w\s\,\-\?]*(([\?]|[\.]|[\!]))|([\?\"]|[\.\"]|[\!\"])))))"
     result = re.findall(regex, data)
     for i in range(len(result)):
-        result[i] = result[i][max([(len(v),j) for (j,v) in (enumerate(result[i]))])[1]]
+        result[i] = result[i][max([(len(v),j) for (j,v) in (enumerate(result[i]))])[1]] # findall also returns partial matches, therefore only want the longest match
     return result
 
 def driver(fileName : str):
     parsedSentence = getSentences(fileName)
     sentenceList = [sentence(s) for s in parsedSentence]
-    sortedSentence = [re.sub(r'[\n]', '',s.raw_sentence).lstrip('[\-][\s]*') for s in sorted(sentenceList)]
+    sortedSentence = [re.sub(r'[\n]', '',s.raw_sentence).lstrip('[\-][\s]*') for s in sorted(sentenceList)] # Some post-processing before printing
     for (index,value) in list(enumerate(sortedSentence)):
         print(index, ':',value)
     return sortedSentence
