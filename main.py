@@ -17,7 +17,7 @@ class sentence:
 def getSentences(fileName : str):
     # Regex was used to compartmentalize string parsing logic from the sorting code.
     # The grammatical structure of the text turned out to be more irregular than I anticipated.
-    # For a larger project, I would have wrote a tokenizer to handle string parsing.    
+    # For a larger project, I would have wrote a tokenizer to handle string parsing.
     with open(fileName, "r") as file:
         data = file.read()
     regex = r"([\s]*([A-Za-z\-])*[\w\s\,\'\-()\:\;]*([\?]|[\.]|[\!])[\s]*)|([\s]*([A-Za-z\-])([\w\s\,\'\-()\:\;\"]*([\w]*)[\s]*[\.][\w\s]*[\.][\w\s]*[\.][\w\s]*)|([\s]*([A-Za-z\-])([\w\s\,\'\-()\:\;\"]*([\?]|[\.]|[\!])[\s]*)))|([\s]*([A-Za-z\-])[\w\s\,\'\-()\:\;]*([\?]|[\.]|[\!])[\s]*)|([\s]*[\"]*([A-Za-z\-])[\w\s\,\'\-]*[\"][^\n]([\s]*)([A-Za-z\-])[\w\s\,\?\!\'\-]*[\s]*[\"]([A-Za-z\-])[\w\s\,\?\!\'\.\-]*[\"])|([\s]*[^\"]([\d\w\s\,\'\-][\d\w\s\,\'\-]*)([\"]*)(?:[^\"\\]|\\.)*)|([\s]*[A-Za-z\-][\w\s\,\'\"\-]*[\"]*([\?]|[\.]|[\!]|[\:])*[\s]*)|([\s]*[\"]([A-Za-z\-])[\w\s\,\?\!\'\.\-]*([\"][\n]|(([\"][\w\s\,\-\?]*(([\?]|[\.]|[\!]))|([\?\"]|[\.\"]|[\!\"])))))"
@@ -40,3 +40,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# BONUS: Security Analysis
+# If this was a real world application, I would also carefully consider:
+# 1. Input validation (i.e checking user input on the command line).
+# 2. Checking contents of the file that's being read (i.e could the program be used to circumvent an access control mechanisim?).
+# 3. I used a relative path for the files but ideally an absolute path should be used (i.e another file with the same name could be placed earlier in the path).
