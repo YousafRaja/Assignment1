@@ -1,13 +1,14 @@
 import re
 
 FILENAME = "ShortStory.txt"
+
 class sentence(object):
     def __init__(self, sentence):
         self.sentence = sentence
     def __lt__(self, other):
-        return priority(self.sentence,other.sentence) == 0
-    def __gt__(self,other):
         return priority(self.sentence,other.sentence) == 1
+    def __gt__(self,other):
+        return priority(self.sentence,other.sentence) == 0
 
 def getSentences(fileName):
     with open(fileName, "r") as file:
@@ -24,9 +25,9 @@ def priority(s1,s2):
     return sorted([s1,s2])[0]==s1
 
 def driver(fileName):
-    parsedSentence = list(enumerate(getSentences(fileName)))
-    sentenceList = [sentence(tuple[1]) for tuple in parsedSentence]
-    sortedSentence = [re.sub(r'[\n]', '',s.sentence).lstrip('[\-][\s]*') for s in sorted(sentenceList, reverse=True)]
+    parsedSentence = getSentences(fileName)
+    sentenceList = [sentence(s) for s in parsedSentence]
+    sortedSentence = [re.sub(r'[\n]', '',s.sentence).lstrip('[\-][\s]*') for s in sorted(sentenceList)]
     for (index,value) in list(enumerate(sortedSentence)):
         print(index, ':',value)
     return sortedSentence
@@ -34,7 +35,6 @@ def driver(fileName):
 def main():
     driver(FILENAME)
     input("Done, press any key to exit.")
-
 
 if __name__ == "__main__":
     main()
