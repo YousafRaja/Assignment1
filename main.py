@@ -3,16 +3,16 @@ import re
 FILENAME = "ShortStory.txt"
 
 class sentence(object):
-    def priority(self,s1, s2):
-        s1 = re.sub(r'\W+', '', s1)
-        s2 = re.sub(r'\W+', '', s2)
-        return sorted([s1, s2])[0] == s1
     def __init__(self, sentence):
         self.sentence = sentence
     def __lt__(self, other):
         return self.priority(self.sentence,other.sentence) == 1
     def __gt__(self,other):
         return self.priority(self.sentence,other.sentence) == 0
+    def priority(self,s1, s2):
+        s1 = re.sub(r'\W+', '', s1)
+        s2 = re.sub(r'\W+', '', s2)
+        return sorted([s1, s2])[0] == s1
 
 def getSentences(fileName):
     with open(fileName, "r") as file:
