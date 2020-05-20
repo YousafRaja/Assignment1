@@ -45,4 +45,4 @@ if __name__ == "__main__":
 # If this was a real world application, I would also carefully consider:
 # 1. Input validation (i.e checking user input on the command line).
 # 2. Checking contents of the file that's being read (i.e could the program be used to circumvent an access control mechanisim?).
-# 3. I used a relative path for the files but ideally an absolute path should be used (i.e another file with the same name could be placed earlier in the path).
+# 3. I used relative paths for the files but ideally an absolute path should be used (i.e another file with the same name could be placed earlier in the path).
