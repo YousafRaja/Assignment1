@@ -3,12 +3,12 @@ import re
 FILENAME = "ShortStory.txt"
 
 class sentence:
-    def __init__(self, sentence):
-        self.sentence = sentence
+    def __init__(self, raw_sentence):
+        self.raw_sentence = raw_sentence
     def __lt__(self, other):
-        return self.priority(self.sentence,other.sentence) == 1
+        return self.priority(self.raw_sentence,other.raw_sentence) == 1
     def __gt__(self,other):
-        return self.priority(self.sentence,other.sentence) == 0
+        return self.priority(self.raw_sentence,other.raw_sentence) == 0
     def priority(self,s1, s2):
         s1 = re.sub(r'\W+', '', s1)
         s2 = re.sub(r'\W+', '', s2)
@@ -26,7 +26,7 @@ def getSentences(fileName : str):
 def driver(fileName : str):
     parsedSentence = getSentences(fileName)
     sentenceList = [sentence(s) for s in parsedSentence]
-    sortedSentence = [re.sub(r'[\n]', '',s.sentence).lstrip('[\-][\s]*') for s in sorted(sentenceList)]
+    sortedSentence = [re.sub(r'[\n]', '',s.raw_sentence).lstrip('[\-][\s]*') for s in sorted(sentenceList)]
     for (index,value) in list(enumerate(sortedSentence)):
         print(index, ':',value)
     return sortedSentence
